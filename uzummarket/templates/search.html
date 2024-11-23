@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Search Results{% endblock title %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h3>Qidiruv natijalari {{ products|length }} ta </h3>
+        {% if products %}
+            <div class="row">
+                {% for product in products %}
+
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <img src="{{ product.product_image.url }}" class="card-img-top" alt="{{ product.name }}">
+                            <div class="card-body">
+                                <h5 class="card-title"><b>{{ product.name }}</b></h5>
+                                <p class="card-text">{{ product.small_description }}</p>
+                                <p class="card-text">{{ product.selling_price|stringformat:'d' }} $</p>
+                                <a href="{% url 'single_product' product_slug=product.slug category_slug=product.category.slug %}" class="btn btn-primary my-2">Batafsil</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p> Mahsulot topilmadi </p>
+        {% endif %}
+    </div>
+{% endblock content %}

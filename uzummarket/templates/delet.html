@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Productni o'chirish{% endblock title %}
+
+{% block content %}
+<h3>Siz rostanham <b>{{ product.name }}</b> ni o'chirasizmi ? </h3>
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit">O'chirish</button>
+    <a href="{% url 'single_product' prod.slug %}">Ortga</a>
+</form>
+
+{% endblock content %}
+

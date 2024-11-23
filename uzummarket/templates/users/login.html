@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}login{% endblock title %}
+
+
+
+{% block content %}
+  <div class="py-3 bg-primary">
+                <div class="container">
+                    <a class="text-white" href="#">Bosh sahifa /</a>
+                    <a class="text-white" href="#">Ro'yxatdan o'tish /</a>
+                </div>
+            </div>
+        <div class="container mt-4">
+
+            <div class="row">
+
+                <div class="col-2">
+
+                </div>
+                <div class="col-6">
+                     <h3>Saytga Kirish </h3>
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ forms.as_p}}
+                       <div style="overflow: hidden;">
+                            <button type="submit" class="btn btn-primary" style="float: left;">Yuborish</button>
+                            <p style="float:right;">Accountingiz yo'qmi ? <a href="{% url 'sig' %}">Ro'yxatdan o'tish</a></p>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-4"></div>
+            </div>
+        </div>
+{% endblock content %}

@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {{ product.name }} {% endblock title %}
+
+{% block content %}
+    <div class="py-3 bg-primary">
+        <div class="container">
+            <a class="text-white" href="{% url 'saxifa' %}">Bosh sahifa /</a>
+            <a class="text-white" href="{% url 'page_category' %}">Kategoriyalar /</a>
+            <a class="text-white" href="{% url 'detcat' pro.category.slug %}">{{ product.category.name }}/</a>
+            <a class="text-white" href="{% url 'single_product' pro.category.slug pro.slug %}">{{ product.name }}</a>
+        </div>
+    </div>
+    <div class="container py-3">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+
+                                    <img src="{{ pro.product_image.url }}" class="w-100" alt="{{ pro.name }}">
+
+                            </div>
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="col-10">
+                                        <h2 class="mb-0">{{ pro.name }}</h2>
+                                    </div>
+                                    {% if product.trending %}
+                                    <div class="col-2">
+                                        <h6 class="mb-0 btn btn-warning ">Aksiya</h6>
+                                    </div>
+                                    {% endif %}
+
+                                </div>
+
+                                <p class="text-muted">{{ meta_description }}</p>
+                              <p class="mb-2 btn btn-info" id="narx">Narxi: <span id="productPrice">{{ pro.selling_price|stringformat:'d' }}</span> so'm</p></p>
+                                {% if product.original_price %}
+                                    <p><s class="text-danger fw-bold">{{ pro.original_price|stringformat:'d' }} so'm</s></p>
+                                {% endif %}
+                                <p class="mb-3 text-secondary text-opacity-75">Sana: {{ pro.created_at|date:"Y-m-d H:i:s" }}</p>
+                                <p class="text-secondary">Mahsulot soni : {{ pro.quantity }} dona</p>
+
+               <!-- Quantity -->
+                        <div class="mb-3">
+                            <label for="quantity" class="text-secondary">Miqdor:</label>
+                            <div class="input-group" style="width:130px;">
+                                <button class="btn btn-outline-danger" type="button" id="minus-btn">-</button>
+                                <input type="text" id="quantity" name="quantity" min="1" value="1" class="form-control text-center" >
+                                <button class="btn btn-outline-success" type="button" id="plus-btn">+</button>
+                            </div>
+                        </div>
+
+
+    <button class="btn btn-primary" form="add-to-cart-form">Savatga qo'shish</button>
+    <button class="btn btn-outline-secondary">Istaklarimga qo'shish</button>
+{% if condition %}
+    <form id="add-to-cart-form" method="post" action="#">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Savatga qo'shish</button>
+    </form>
+    <button class="btn btn-outline-secondary">Istaklarimga qo'shish</button>
+{% endif %}
+                                <hr>
+                                <h2>Mahsulot haqida </h2>
+                                <p>{{ pro.description }}</p>
+                                <br>
+                                <hr>
+                                <p>{{ pro.meta_description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock content %}

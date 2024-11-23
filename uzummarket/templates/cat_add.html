@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %} Kategoriya qo'shish {% endblock title %}
+
+
+
+    {% block content %}
+            <div class="py-3 bg-primary">
+                <div class="container">
+                    <a class="text-white" href="#">Bosh sahifa /</a>
+                    <a class="text-white" href="#">Kategoriya qo'shish /</a>
+                </div>
+            </div>
+        <div class="container mt-4">
+
+            <div class="row">
+
+                <div class="col-2">
+
+                </div>
+                <div class="col-6">
+                     <h3>Kategoriya qo'shish  </h3>
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ forms.as_p }}
+                       <div style="overflow: hidden;">
+                            <button type="submit" class="btn btn-primary" style="float: left;">Yuborish</button>
+                       </div>
+
+                    </form>
+                </div>
+                <div class="col-4"></div>
+
+
+            </div>
+        </div>
+    {% endblock content %}

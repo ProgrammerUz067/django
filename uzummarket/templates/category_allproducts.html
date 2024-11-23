@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Kategoriyalar {% endblock title %}
+
+
+
+    {% block content %}
+     <div class="py-3 bg-primary">
+            <div class="container">
+                <a class="text-white" href="{% url 'saxifa' %}">Bosh sahifa /</a>
+                <a class="text-white" href="{% url 'page_category' %}">Kategoriyalar /</a>
+                <a class="text-white" href="#">{{ category_name.name }} </a>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="">
+                    <hr>
+                    <div class="row">
+                        {% for product in products %}
+                        <div class="col-md-3">
+                            <div class="card">
+                                <a href="#">
+                                    <div class="card-body">
+                                    <div class="category-image" >
+                                        {% if product.product_image %}
+                                            <img src="{{ product.product_image.url }}" alt="{{ product.name }}" class="w-100" style="height:250px;">
+                                        {% else %}
+                                            <p>No image available</p>
+                                        {% endif %}
+                                    </div>
+
+                                    <h4 class="text-center">{{ product.name|slice:16 }}</h4>
+                                     <span class="float-start">{{ product.original_price|stringformat:'d' }}</span>
+                                     <span class="float-end">{{ product.selling_price|stringformat:'d' }}</span>
+                                </div>
+                                </a>
+
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock content %}
